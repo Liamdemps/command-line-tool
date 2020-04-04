@@ -1,22 +1,21 @@
 
-class Clt < Formula
+class HomebrewCommandLineTool < Formula
   desc ""
   homepage ""
   url "https://github.com/Liamdemps/homebrew-command-line-tool/archive/v1.0.1.tar.gz"
-  sha256 "de6da4596125a7b578e9754ea3d8ca841946439a3bc3cba75786be4ab71a7e8b"
+  sha256 "eb4249b80ff04666e4dd061dc1aa69f7b7c10863d53c90e5f3d1268e861a8cdf"
 
-  
+
 
   def install
-    
     system "./configure", "--disable-debug",
                           "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--prefix=#{prefix}"
-    
   end
 
   test do
+   
     system "false"
   end
 end
