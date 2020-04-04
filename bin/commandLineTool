@@ -1,0 +1,80 @@
+#!/usr/bin/env python
+
+# make your python script an exacutable 
+# Make your own bin folder
+# add the python script to the bin folder
+# add the bin folder to your PATH in .bash_profile
+import sys
+import os
+import subprocess
+import json
+
+
+def get_config_data():
+    with open('config.json') as json_file:
+            data = json.load(json_file)
+            return(data)
+
+
+def add_path():
+    print(sys.argv[1])
+    name = raw_input("Enter shortcut name for your path: ")
+    path = raw_input("Enter the full path: ")
+    config = get_config_data()
+    with open('config.json', 'w') as json_file:
+        config[str(name)] = path
+        json.dump(config, json_file)
+    print('Shortcut, "%s", has been created for path, %s' % (name, path))
+    
+def get_path(name):
+    data = get_config_data()
+    try:
+        path = data[name]
+    except:
+        print("No shortcut exits...")
+        path = ""
+    write_command_to_file("%s" % (path))
+
+def remove_path(name):
+    data = get_config_data()
+    del data[name]
+    with open('config.json', 'w') as json_file:
+        json.dump(data, json_file)
+    print('Shortcut, "%s", has been removed' % (name))
+
+
+def write_command_to_file(command):
+    f = open("recent_command.sh", "w")
+    f.write(command)
+    f.close()
+
+def display_config():
+    data = get_config_data()
+    for key in data:
+        print("%s ---> %s" % (key, data[key]))
+
+def help():
+    print("--------------- Command Line Tool V2.0 ---------------")
+    print("clt usage\n")
+    print("-a, add")
+    print("-r, remove <name>")
+    print("-c, code <name>")
+    print("-o, open <name>")
+    print("-l, list")
+    print("-h, help")
+
+if __name__ == '__main__':
+    func = sys.argv[1]
+    if(func=="add"):
+        add_path()
+    if(func=="get"):
+        get_path(sys.argv[2])
+    if(func=="remove"):
+        remove_path(sys.argv[2])
+    if(func=="list"):
+        display_config()
+    if(func=="help"):
+        help()
+
+
+    
