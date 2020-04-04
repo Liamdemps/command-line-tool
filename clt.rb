@@ -17,7 +17,6 @@ class CommandLineTool < Formula
   end
 
   test do
-   s being tested: `system "#{bin}/program", "do", "something"`.
     system "false"
   end
 end
