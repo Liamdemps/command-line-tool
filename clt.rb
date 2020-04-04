@@ -1,5 +1,5 @@
 
-class HomebrewCommandLineTool < Formula
+class Clt < Formula
   desc ""
   homepage ""
   url "https://github.com/Liamdemps/homebrew-command-line-tool/archive/v1.0.1.tar.gz"
