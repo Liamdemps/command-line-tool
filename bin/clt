@@ -51,7 +51,7 @@ function clt() {
             esac
             
         else
-            echo "file not exists"
+            echo "New config file created"
             touch config.json
             echo "{}" > config.json
         fi
