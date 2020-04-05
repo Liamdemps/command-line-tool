@@ -36,6 +36,12 @@ function clt() {
         cd $DIR
         ./commandLineTool help;
         ;;
+    -i | init)
+        DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+        cd $DIR
+        touch config.json
+        echo "{}" > config.json
+        ;;
     ${var+x} ) #checks if no argument was passed
         echo "Please enter a command argument"
         echo "For help run... clt help"

@@ -18,13 +18,15 @@ def get_config_data():
 
 def add_path():
     print(sys.argv[1])
-    name = raw_input("Enter shortcut name for your path: ")
-    path = raw_input("Enter the full path: ")
-    config = get_config_data()
-    with open('config.json', 'w') as json_file:
-        config[str(name)] = path
-        json.dump(config, json_file)
-    print('Shortcut, "%s", has been created for path, %s' % (name, path))
+    try:
+        name = raw_input("Enter shortcut name for your path: ")
+        path = raw_input("Enter the full path: ")
+        config = get_config_data()
+        with open('config.json', 'w') as json_file:
+            config[str(name)] = path
+            json.dump(config, json_file)
+    except:
+        print('Shortcut, "%s", has been created for path, %s' % (name, path))
     
 def get_path(name):
     data = get_config_data()
