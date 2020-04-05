@@ -45,12 +45,13 @@ def get_path(name):
 def remove_path(name):
     try:
         data = get_config_data()
+        del data[name]
+        with open('config.json', 'w') as json_file:
+            json.dump(data, json_file)
+        print('Shortcut, "%s", has been removed' % (name))
     except:
         no_config_file()
-    del data[name]
-    with open('config.json', 'w') as json_file:
-        json.dump(data, json_file)
-    print('Shortcut, "%s", has been removed' % (name))
+    
 
 
 def write_command_to_file(command):
