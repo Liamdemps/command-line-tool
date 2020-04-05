@@ -19,9 +19,9 @@ def get_config_data():
 def add_path():
     print(sys.argv[1])
     try:
+        config = get_config_data()
         name = raw_input("Enter shortcut name for your path: ")
         path = raw_input("Enter the full path: ")
-        config = get_config_data()
         with open('config.json', 'w') as json_file:
             config[str(name)] = path
             json.dump(config, json_file)
