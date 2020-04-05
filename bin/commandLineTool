@@ -25,11 +25,16 @@ def add_path():
         with open('config.json', 'w') as json_file:
             config[str(name)] = path
             json.dump(config, json_file)
-    except:
         print('Shortcut, "%s", has been created for path, %s' % (name, path))
+    except:
+        no_config_file()
+        
     
 def get_path(name):
-    data = get_config_data()
+    try:
+        data = get_config_data()
+    except:
+        no_config_file()
     try:
         path = data[name]
     except:
@@ -38,7 +43,10 @@ def get_path(name):
     write_command_to_file("%s" % (path))
 
 def remove_path(name):
-    data = get_config_data()
+    try:
+        data = get_config_data()
+    except:
+        no_config_file()
     del data[name]
     with open('config.json', 'w') as json_file:
         json.dump(data, json_file)
@@ -54,6 +62,9 @@ def display_config():
     data = get_config_data()
     for key in data:
         print("%s ---> %s" % (key, data[key]))
+
+def no_config_file():
+    print("No config file was found, run 'clt init' to initialise new config file")
 
 def help():
     print("--------------- Command Line Tool V2.0 ---------------")
