@@ -60,9 +60,12 @@ def write_command_to_file(command):
     f.close()
 
 def display_config():
-    data = get_config_data()
-    for key in data:
-        print("%s ---> %s" % (key, data[key]))
+    try:
+        data = get_config_data()
+        for key in data:
+            print("%s ---> %s" % (key, data[key]))
+    except:
+        no_config_file()
 
 def no_config_file():
     print("No config file was found, run 'clt init' to initialise new config file")
@@ -70,6 +73,7 @@ def no_config_file():
 def help():
     print("--------------- Command Line Tool V2.0 ---------------")
     print("clt usage\n")
+    print("-i, init")
     print("-a, add")
     print("-r, remove <name>")
     print("-c, code <name>")
