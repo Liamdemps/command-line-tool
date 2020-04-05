@@ -33,14 +33,16 @@ def add_path():
 def get_path(name):
     try:
         data = get_config_data()
+        try:
+            path = data[name]
+        except:
+            print("No shortcut exits...")
+            path = ""
+        write_command_to_file("%s" % (path))
     except:
         no_config_file()
-    try:
-        path = data[name]
-    except:
-        print("No shortcut exits...")
-        path = ""
-    write_command_to_file("%s" % (path))
+    
+    
 
 def remove_path(name):
     try:

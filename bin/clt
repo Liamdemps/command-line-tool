@@ -39,8 +39,23 @@ function clt() {
     -i | init)
         DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
         cd $DIR
-        touch config.json
-        echo "{}" > config.json
+        if test -f "config.json"; 
+        then
+            echo "A config file already exists, are you sure you want to re-init?"
+            echo "By re-initialising you will lose all your shortcuts."
+            read -p "Enter Y or N: " RES 
+            case $RES in
+                y | Y | yes) touch config.json; echo "{}" > config.json; echo "New config file created";;
+                n | N | no) echo "exiting...";;
+                *) echo "Invalid response, exiting..."
+            esac
+            
+        else
+            echo "file not exists"
+            touch config.json
+            echo "{}" > config.json
+        fi
+            
         ;;
     ${var+x} ) #checks if no argument was passed
         echo "Please enter a command argument"
