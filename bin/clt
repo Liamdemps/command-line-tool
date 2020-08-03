@@ -2,6 +2,7 @@
 
 ## to install this project add "source ~/commandLineTool_config/bin/.clt.sh" to your /etc/bashrc file
 function clt() {
+    echo "Previous path = ${PWD}" 
   case $1 in
     -o | open)
         DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
